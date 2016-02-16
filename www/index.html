@@ -31,8 +31,9 @@
     <body data-ng-view>
         <div data-ng-controller="mainController">{{1+1}}
         <!--<div>{{1+1}}-->
+            <input type="checkbox" data-ng-model="test">
             {{test}}
-            test
+            <p data-ng-show="test">This is Test!</p>
         </div>
         <script type="text/javascript" src="lib/angular.js"></script>
         <script type="text/javascript" src="lib/angular-route.js"></script>
