@@ -17,6 +17,10 @@ angular.module('myApp').controller('mainController', function($scope, $window) {
         $scope.template = 'user.html';
     }
 
+    $scope.adv = function() {
+        $scope.template = 'adv.html';
+    }
+
     $scope.mapWidth = $window.innerWidth;
     $scope.mapHeight = $window.innerHeight;
 });
