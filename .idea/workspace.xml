@@ -24,12 +24,15 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$USER_HOME$/env/bin/python" />
   </component>
-  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <created>1455651076598</created>
+      <created>1461774521334</created>
       <option name="number" value="Default" />
-      <updated>1455651076598</updated>
+      <option name="presentableId" value="Default" />
+      <updated>1461774521334</updated>
     </task>
     <servers />
   </component>
