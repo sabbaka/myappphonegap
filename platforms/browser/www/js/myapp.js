@@ -1,29 +1,44 @@
 angular.module('myApp', [])
 
 angular.module('myApp').controller('mainController', function($scope, $window) {
-    $scope.mapShow = false;
+    var host  = 'http://192.168.56.102:8000/';
+
+    $scope.mapshow = true;
     $scope.map = function() {
-//        $scope.template = 'map.html';
-        $scope.mapShow = true;
+        $scope.mapshow = true;
         $scope.template = '';
     }
 
     $scope.settings = function() {
+        $scope.mapshow = false;
         $scope.template = 'settings.html';
     }
 
     $scope.order = function() {
+        $scope.mapshow = false;
         $scope.template = 'order.html';
     }
 
     $scope.user = function() {
-        $scope.template = 'user.html';
+
+    }
+
+    $scope.zones = function() {
+        $scope.mapshow = false;
+        $scope.template = 'zones.html';
     }
 
     $scope.adv = function() {
-        $scope.template = 'adv.html';
+        $scope.mapshow = false;
+        $scope.template = 'reccla.html';
     }
 
     $scope.mapWidth = $window.innerWidth;
     $scope.mapHeight = $window.innerHeight;
 });
+
+angular.module('myApp').controller('mainController', function($scope, ) {
+
+
+}
+

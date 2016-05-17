@@ -30,43 +30,25 @@
         <title>Hello World</title>
         <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript">
-        var map;
-        document.addEventListener("deviceready", function() {
-          var div = document.getElementById("map_canvas");
-
-          // Initialize the map view
-          map = plugin.google.maps.Map.getMap(div);
-
-          // Wait until the map is ready status.
-          map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
-        }, false);
-
-        function onMapReady() {
-          var button = document.getElementById("button");
-          button.addEventListener("click", onBtnClicked, false);
-        }
-
-        function onBtnClicked() {
-          map.showDialog();
-        }
-        </script>
+        <script type="text/javascript" src="js/mapinit.js"></script>
     </head>
     <body data-ng-view data-ng-controller="mainController">
-        <div class="container-fluid" style="min-height:100%; height:100%;">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-2 col-sm-2 col-xs-2 list-group">
                     <a href="#" data-ng-click="map();" class="list-group-item glyphicon glyphicon-picture">Карта</a>
+                    <a href="#" data-ng-click="zones();" class="list-group-item glyphicon glyphicon-th-list">Zones</a>
                     <a href="#" data-ng-click="settings();" class="list-group-item glyphicon glyphicon-wrench">Настройки</a>
                     <a href="#" data-ng-click="order();" class="list-group-item glyphicon glyphicon-usd">Поръчка</a>
                     <a href="#" data-ng-click="adv();" class="list-group-item glyphicon glyphicon-road">Реклама</a>
                     <!--<a href="#" data-ng-click="user();" class="list-group-item glyphicon glyphicon-user">Шофьор</a>-->
                 </div>
-                <div class="col-md-10 col-sm-10 col-xs-10" style="min-height:100%; height:100%;" data-ng-include="template"></div>
-
+                <div class="col-md-10 col-sm-10 col-xs-10" data-ng-include="template" data-ng-hide="mapshow"></div>
+                <div class="col-md-10 col-sm-10 col-xs-10" style="position:relative;height:0;padding-bottom:75%;overflow:hidden;" data-ng-show="mapshow">
+                    <div id="map_canvas" style="position:absolute;top:0;left:0;width:100% !important;height:100% !important;"></div>
+                </div>
             </div>
         </div>
-        <div style="width:100%;height:400px;border:1px solid blakc;" id="map_canvas"></div>
         <script type="text/javascript" src="lib/angular.js"></script>
         <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
         <script type="text/javascript" src="lib/angular-route.js"></script>
