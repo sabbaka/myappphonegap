@@ -37,8 +37,7 @@ angular.module('myApp').controller('mainController', function($scope, $window) {
     $scope.mapHeight = $window.innerHeight;
 });
 
-angular.module('myApp').controller('mainController', function($scope, ) {
+angular.module('myApp').controller('settingsController', function($scope) {
 
-
-}
+});
 
