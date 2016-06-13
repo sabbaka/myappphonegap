@@ -1,19 +1,22 @@
 var map;
 document.addEventListener("deviceready", function() {
-  var div = document.getElementById("map_canvas");
+    var div = document.getElementById("map_canvas");
+    if(typeof plugin !== 'undefined') {
+        // Initialize the map view
+        map = plugin.google.maps.Map.getMap(div);
 
-  // Initialize the map view
-  map = plugin.google.maps.Map.getMap(div);
-
-  // Wait until the map is ready status.
-  map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
-
+        // Wait until the map is ready status.
+        map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
+    }
 }, false);
 
 function onMapReady() {
 //    var button = document.getElementById("button");
 //    button.addEventListener("click", onBtnClicked, false);
-    alert('im ready');
+//    alert('im ready');
+
+//    var success = false;
+
     map.getMyLocation(function(location) {
         var msg = ["Current your location:\n",
         "latitude:" + location.latLng.lat,
@@ -31,14 +34,19 @@ function onMapReady() {
 
         var GOOGLE = new plugin.google.maps.LatLng(location.latLng.lat, location.latLng.lng);
         map.moveCamera({
-          'target': GOOGLE,
-          'tilt': 60,
-          'zoom': 18,
-          'bearing': 140
-        }, function() {
-          console.log("The animation is done");
+            'target': GOOGLE,
+            'tilt': 60,
+            'zoom': 18,
+            'bearing': 140
         });
+//        , function() {
+//            success = true;
+//        });
     });
+
+//    if(success == false) {
+//        onMapReady();
+//    }
 }
 
 //function onBtnClicked() {

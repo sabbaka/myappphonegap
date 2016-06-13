@@ -29,30 +29,116 @@
         <!--<link rel="stylesheet" type="text/css" href="style.css" />-->
         <title>Hello World</title>
         <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+        <link href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css" rel="stylesheet">
+        <link href="style.css" rel="stylesheet">
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/mapinit.js"></script>
     </head>
-    <body data-ng-view data-ng-controller="mainController">
+    <body data-ng-view data-ng-controller="registerController">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-2 col-sm-2 col-xs-2 list-group">
-                    <a href="#" data-ng-click="map();" class="list-group-item glyphicon glyphicon-picture">Карта</a>
-                    <a href="#" data-ng-click="zones();" class="list-group-item glyphicon glyphicon-th-list">Zones</a>
-                    <a href="#" data-ng-click="settings();" class="list-group-item glyphicon glyphicon-wrench">Настройки</a>
-                    <a href="#" data-ng-click="order();" class="list-group-item glyphicon glyphicon-usd">Поръчка</a>
-                    <a href="#" data-ng-click="adv();" class="list-group-item glyphicon glyphicon-road">Реклама</a>
-                    <!--<a href="#" data-ng-click="user();" class="list-group-item glyphicon glyphicon-user">Шофьор</a>-->
-                </div>
-                <div class="col-md-10 col-sm-10 col-xs-10" data-ng-include="template" data-ng-hide="mapshow"></div>
-                <div class="col-md-10 col-sm-10 col-xs-10" style="position:relative;height:0;padding-bottom:75%;overflow:hidden;" data-ng-show="mapshow">
-                    <div id="map_canvas" style="position:absolute;top:0;left:0;width:100% !important;height:100% !important;"></div>
+                <div class="col-md-12 col-sm-12 col-xs-12 list-group">
+                    <form action="">
+                        <div id="part1" data-ng-show="step == 1">
+                            <div>
+                                <label for="">Enter your car ID number</label>
+                                <input type="text" name="username" data-ng-model="driver.username">
+                            </div>
+                            <div>
+                                <label for="">Enter your password</label>
+                                <input type="password" name="password" data-ng-model="driver.password">
+                            </div>
+                            <button type="button" data-ng-click="nextStep();">Next Step</button>
+                        </div>
+                        <div id="part2" data-ng-show="step == 2">
+                            <div>
+                                <label for="">First Name</label>
+                                <input type="text" name="first_name" data-ng-model="driver.first_name">
+                            </div>
+                            <div>
+                                <label for="">Last Name</label>
+                                <input type="text" data-ng-model="driver.last_name">
+                            </div>
+                            <div>
+                                <label for="">Age</label>
+                                <input type="text" data-ng-model="driver.age">
+                            </div>
+                            <div>
+                                <label for="">Phone</label>
+                                <input type="text" data-ng-model="driver.phone">
+                            </div>
+                            <button type="button" data-ng-click="prevStep();">Previous Step</button>
+                            <button type="button" data-ng-click="nextStep();">Next Step</button>
+                        </div>
+                        <div id="part3" data-ng-show="step == 3">
+                            <div>
+                                <label for="">Car Type</label>
+                                <select name="car_type" id="car_type" data-ng-model="driver.car_type">
+                                    <option value="1">Sedan</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="">Car Brand</label>
+                                <select name="car_brand" id="car_brand" data-ng-model="driver.car_brand">
+                                    <option value="1">Volkswagen</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="">Car Model</label>
+                                <input type="text" data-ng-model="driver.car_sub_model">
+                            </div>
+                            <button type="button" data-ng-click="prevStep();">Previous Step</button>
+                            <button type="button" data-ng-click="nextStep();">Next Step</button>
+                        </div>
+                        <div id="part4" data-ng-show="step == 4">
+                            <div>
+                                <label for="">Number of Seats</label>
+                                <select name="seats" id="seats" data-ng-model="driver.car_places">
+                                    <option value="1">Medium</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="">Age of Car</label>
+                                <input type="text" data-ng-model="driver.car_age">
+                            </div>
+                            <div>
+                                <label for="">Registration Number</label>
+                                <input type="text" data-ng-model="driver.car_reg_number">
+                            </div>
+                            <div>
+                                <label for="">Size of Trunk</label>
+                                <select name="car_trunk_size" id="car_trunk_size" data-ng-model="driver.car_trunk_size">
+                                    <option value="1">Medium</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="">Pets Allowed</label>
+                                <input type="checkbox" name="pets" data-ng-model="driver.car_pets_allowed">
+                            </div>
+                            <div>
+                                <label for="">Smoking Allowed</label>
+                                <input type="checkbox" name="pets" data-ng-model="driver.car_smoking">
+                            </div>
+                            <button type="button" data-ng-click="prevStep();">Previous Step</button>
+                            <button type="button" data-ng-click="finishReg();">Finish Registration</button>
+                        </div>
+                        <!--<div id="part5">-->
+                            <!--photo todo-->
+                        <!--</div>-->
+                    </form>
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="lib/angular.js"></script>
         <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
-        <script type="text/javascript" src="lib/angular-route.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="lib/angular.js"></script>
+        <script type="text/javascript" src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+        <script type="text/javascript" src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+        <script type="text/javascript" src="lib/angular-route.js"></script>
         <script type="text/javascript" src="js/myapp.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">

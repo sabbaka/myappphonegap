@@ -1,13 +1,46 @@
-angular.module('myApp', [])
+angular.module('myApp', ['ui.bootstrap',]);
 
-angular.module('myApp').controller('mainController', function($scope, $window) {
-    var host  = 'http://192.168.56.102:8000/';
+angular.module('myApp').service('taxiDriverSettings', function($http) {
+//    var host  = 'http://192.168.56.102:8000/';
+
+    $http.get('http://10.10.11.6:8000/api/order/').then(function(data){
+        console.log(data.data);
+    })
+});
+
+angular.module('myApp').controller('registerController', function($scope, $http) {
+    $scope.step = 1;
+
+    $scope.nextStep = function() {
+        $scope.step++;
+    }
+
+    $scope.prevStep = function() {
+        $scope.step--;
+    }
+
+    $scope.finishReg = function() {
+        $http.post('http://10.10.11.6:8000/api/register/', $scope.driver).success(function(){}).error(function(){});
+    }
+
+});
+
+angular.module('myApp').controller('mainController', function($scope, $window, taxiDriverSettings, $uibModal) {
+//    var host  = 'http://192.168.56.102:8000/';
 
     $scope.mapshow = true;
     $scope.map = function() {
         $scope.mapshow = true;
         $scope.template = '';
     }
+
+
+    $scope.openOrderModal = $uibModal.open({templateUrl: 'order.html'});
+    $scope.closeModal = function() {
+        $scope.openOrderModal.dismiss('close');
+    }
+    console.log($scope.openOrderModal);
+
 
     $scope.settings = function() {
         $scope.mapshow = false;
